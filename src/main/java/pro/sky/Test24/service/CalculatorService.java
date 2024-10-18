@@ -1,9 +1,8 @@
 package pro.sky.Test24.service;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import pro.sky.Test24.exception.ZeroException;
 
-@Component
 @Service
 public class CalculatorService {
     public int getSummary(Integer num1, Integer num2) {
@@ -29,6 +28,10 @@ public class CalculatorService {
         if (num1 == null || num2 == null) {
             throw new IllegalArgumentException("Один из параметров не передан");
         }
+        if(num2 == 0) {
+           throw new ZeroException();
+        }
+
         return num1 / num2;
     }
 
